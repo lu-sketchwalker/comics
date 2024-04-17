@@ -43,11 +43,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
+          node-version: '20'
           submodules: recursive
           fetch-depth: 0
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
+        with:
+          node-version: '20'
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
       - name: Build with Hugo
@@ -63,6 +66,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
+          node-version: '20'
           path: ./public
 
   # Deployment job
@@ -76,3 +80,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+        with:
+          node-version: '20'
